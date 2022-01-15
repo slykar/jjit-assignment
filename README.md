@@ -44,3 +44,8 @@ Things that I would like to have but did not want to spend time on for a take-ho
 
 - Create or use a complete UI kit more components, e.g. `Avatar`
 - Virtualized scroll list of job offers for better performance
+- More fluid breakpoints/proportions for offers-list/map-view (avoid layout jumps)
+
+### Other
+
+- SEO and user friendly URLs for filters

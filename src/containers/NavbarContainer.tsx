@@ -7,12 +7,6 @@ const user = {
   imageUrl: '/assets/images/sk.jpeg',
 };
 
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-];
-
 export default function NavbarContainer() {
   return (
     <Disclosure as="nav" className="bg-gray-800">
