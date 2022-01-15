@@ -37,3 +37,5 @@ Things that I would like to have but did not want to spend time on for a take-ho
 
 - A setup of Prettier that does not depend on the IDE, but is integrated with Eslint;
 - Git hooks integration to run Eslint, check commit message format, etc.;
+- More quality and style checks: import sorting, cyclomatic complexity, ordering of CSS class names, etc.;
+- Setup CI for automated tests and additional code analysis, e.g. SonarQube; 
