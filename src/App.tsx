@@ -3,7 +3,6 @@ import { Route, Routes } from 'react-router-dom';
 import JobListPage from './pages/JobListPage';
 import JobDetailsPage from './pages/JobDetailsPage';
 
-import './App.css';
 import AppLayout from './layouts/AppLayout';
 import OffersLayout from './layouts/OffersLayout';
 
