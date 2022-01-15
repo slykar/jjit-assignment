@@ -2,6 +2,8 @@
 import { Fragment } from 'react';
 import { Disclosure, Menu, Transition } from '@headlessui/react';
 import { MenuIcon, XIcon } from '@heroicons/react/outline';
+import JobFilters from '../containers/JobFiltersContainer';
+import { Outlet } from 'react-router-dom';
 
 const user = {
   name: 'Sylwester',
@@ -31,7 +33,7 @@ export default function AppLayout() {
         <Disclosure as="nav" className="bg-gray-800">
           {({ open }) => (
             <>
-              <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="w-full mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
                   <div className="flex items-center">
                     <div className="flex-shrink-0">
@@ -179,15 +181,16 @@ export default function AppLayout() {
             </>
           )}
         </Disclosure>
-        <main>
-          <div className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
-            {/* Replace with your content */}
-            <div className="px-4 py-6 sm:px-0">
-              <div className="border-4 border-dashed border-gray-200 rounded-lg h-96" />
-            </div>
-            {/* /End replace */}
+
+        <header className="bg-white border-b">
+          <div className="w-full py-6 px-4 sm:px-6 lg:px-8">
+            <JobFilters />
           </div>
-        </main>
+        </header>
+
+        <div className="w-full">
+          <Outlet />
+        </div>
       </div>
     </>
   );
