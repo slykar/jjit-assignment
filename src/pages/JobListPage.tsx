@@ -1,7 +1,7 @@
-import React from 'react';
 import { Link } from 'react-router-dom';
+import { FunctionComponent } from 'react';
 
-const JobList: React.FC = (props, context) => {
+const JobListPage: FunctionComponent = (props, context) => {
   return (
     <main>
       <h1>Job List</h1>
@@ -10,4 +10,4 @@ const JobList: React.FC = (props, context) => {
   );
 };
 
-export default JobList;
+export default JobListPage;

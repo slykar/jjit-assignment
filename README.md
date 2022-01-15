@@ -35,7 +35,11 @@ Things that I would like to have but did not want to spend time on for a take-ho
 
 ### Tooling
 
-- A setup of Prettier that does not depend on the IDE, but is integrated with Eslint;
-- Git hooks integration to run Eslint, check commit message format, etc.;
-- More quality and style checks: import sorting, cyclomatic complexity, ordering of CSS class names, etc.;
-- Setup CI for automated tests and additional code analysis, e.g. SonarQube; 
+- A setup of Prettier that does not depend on the IDE, but is integrated with Eslint
+- Git hooks integration to run Eslint, check commit message format, etc.
+- More quality and style checks: import sorting, cyclomatic complexity, ordering of CSS class names, etc.
+- Setup CI for automated tests and additional code analysis, e.g. SonarQube
+
+### UI/UX
+
+- Create or use a complete UI kit more components, e.g. `Avatar`
