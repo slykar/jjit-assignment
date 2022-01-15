@@ -4,12 +4,15 @@ import JobList from './pages/JobList';
 import JobDetails from './pages/JobDetails';
 
 import './App.css';
+import AppLayout from './layouts/AppLayout';
 
 function App() {
   return (
     <Routes>
-      <Route path="/" element={<JobList />} />
-      <Route path="/offers/:offerId" element={<JobDetails />} />
+      <Route element={<AppLayout />}>
+        <Route path="/" element={<JobList />} />
+        <Route path="/offers/:offerId" element={<JobDetails />} />
+      </Route>
     </Routes>
   );
 }
