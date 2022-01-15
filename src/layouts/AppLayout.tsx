@@ -4,10 +4,10 @@ import JobFiltersContainer from '../containers/JobFiltersContainer';
 
 export default function AppLayout() {
   return (
-    <div className="min-h-full">
+    <>
       <NavbarContainer />
       <JobFiltersContainer />
       <Outlet />
-    </div>
+    </>
   );
 }
