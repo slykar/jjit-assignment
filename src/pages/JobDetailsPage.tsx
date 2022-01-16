@@ -3,7 +3,14 @@ import { ArrowLeftIcon } from '@heroicons/react/solid';
 import { useOffer } from '../layouts/OffersLayout';
 import { Link, useParams } from 'react-router-dom';
 
-const JobDetailsPage: FunctionComponent = (props) => {
+/**
+ * Details of a single job offer.
+ *
+ * Takes advantage of the Outlet context from parent layout component {@link OffersLayout}
+ *
+ * @constructor
+ */
+const JobDetailsPage: FunctionComponent = () => {
   const { offerId } = useParams();
   const offer = useOffer();
 
@@ -14,7 +21,7 @@ const JobDetailsPage: FunctionComponent = (props) => {
   return (
     <main className="px-4 flex flex-col space-y-4">
       <div className="rounded-b p-2 flex flex-col items-start bg-gradient-to-r from-violet-500 to-fuchsia-500">
-        <Link to=".." className="bg-opacity-20 bg-black rounded p-1">
+        <Link to="/" className="bg-opacity-20 bg-black rounded p-1">
           <ArrowLeftIcon className="w-6 text-white" />
         </Link>
         <div className="flex flex-row items-center">

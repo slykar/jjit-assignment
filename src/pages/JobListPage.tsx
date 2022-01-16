@@ -8,6 +8,7 @@ import { salaryRangeForApiOffer } from '../utils/offers';
 const JobListPage: FunctionComponent = () => {
   const offers = useOffersQueryResult();
 
+  // TODO: Ugly status indicators... Also, no proper error reporting to the user.
   if (offers.isLoading) return <p>Loading...</p>;
   if (offers.error) return <p>An error has occurred: {offers.error.message}</p>;
 

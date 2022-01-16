@@ -43,13 +43,17 @@ Things that I would like to have but did not want to spend time on for a take-ho
 ### Architecture
 
 - State management using Mobx
+- Lazy loading of images - webp `loading="lazy"`
 
 ### UI/UX
 
-- Create or use a complete UI kit more components, e.g. `Avatar`
+- Create or use a complete UI kit - more dumb components to encapsulate tailwind styling
 - Virtualized scroll list of job offers for better performance
 - More fluid breakpoints/proportions for offers-list/map-view (avoid layout jumps)
 - Error-specific messages and user-reportable error codes 
+- Highlight marker of the currently displayed offer
+- List offers when clicking on a clustered marker
+- At least a bit of focus on a11y and keyboard navigation possibilities
 
 ### Other
 
