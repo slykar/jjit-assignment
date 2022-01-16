@@ -4,8 +4,8 @@ import { UseQueryResult } from 'react-query';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { OffersMarkerCluster } from '../components/map/OffersMarkerCluster';
 import { MapOfferNavigator } from '../components/map/MapOfferNavigator';
-import findOfferById from '../utils/findOfferById';
 import { ApiOffer, useOfferQuery } from '../api';
+import { findOfferById } from '../utils/offers';
 
 /**
  * Expose offers loaded as part of this layout page using React Router.

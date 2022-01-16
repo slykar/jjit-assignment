@@ -3,21 +3,7 @@ import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
 import { OfferListItem } from '../components/offers/OfferListItem';
 import { Link } from 'react-router-dom';
 import { useOffersQueryResult } from '../layouts/OffersLayout';
-import { ApiOffer } from '../api';
-
-function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
-  const hasSalaryInfo = offer.salary_from && offer.salary_to;
-  const localize = (n: number) => n.toLocaleString();
-
-  return hasSalaryInfo ? (
-    <>
-      {localize(offer.salary_from!)} &ndash; {localize(offer.salary_to!)}
-      {offer.salary_currency && ' ' + offer.salary_currency}
-    </>
-  ) : (
-    <>Undisclosed Salary</>
-  );
-}
+import { salaryRangeForApiOffer } from '../utils/offers';
 
 const JobListPage: FunctionComponent = () => {
   const offers = useOffersQueryResult();
