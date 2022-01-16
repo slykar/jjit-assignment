@@ -2,7 +2,7 @@ import { FunctionComponent } from 'react';
 import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
 import { OfferListItem } from '../components/offers/OfferListItem';
 import { Link } from 'react-router-dom';
-import { ApiOffer, useOffers } from '../layouts/OffersLayout';
+import { ApiOffer, useOffersQueryResult } from '../layouts/OffersLayout';
 
 function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
   const hasSalaryInfo = offer.salary_from && offer.salary_to;
@@ -19,7 +19,7 @@ function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
 }
 
 const JobListPage: FunctionComponent = () => {
-  const offers = useOffers();
+  const offers = useOffersQueryResult();
 
   if (offers.isLoading) return <p>Loading...</p>;
   if (offers.error) return <p>An error has occurred: {offers.error.message}</p>;

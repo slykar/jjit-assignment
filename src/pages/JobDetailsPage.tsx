@@ -1,18 +1,11 @@
 import { FunctionComponent } from 'react';
 import { ArrowLeftIcon } from '@heroicons/react/solid';
-import { ApiOffer, useOffers } from '../layouts/OffersLayout';
+import { useOffer } from '../layouts/OffersLayout';
 import { Link, useParams } from 'react-router-dom';
 
 const JobDetailsPage: FunctionComponent = (props) => {
-  const offers = useOffers();
   const { offerId } = useParams();
-
-  const offer: ApiOffer | undefined = offers.data?.find(
-    // NOTE: The `offer.id` might contain a URL encoded value,
-    //       e.g. "full-stack-c%23-angular" which translates to "full-stack-c#-angular" route param.
-    //       We need to either decode `offer.id` OR encode route param `offerId`.
-    (o) => decodeURIComponent(o.id) === offerId
-  );
+  const offer = useOffer();
 
   if (!offer) {
     return <h1>Offer {offerId} could not be loaded :(</h1>;

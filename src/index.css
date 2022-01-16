@@ -1,3 +1,12 @@
+/*
+Just importing the leaflet CSS won't make the marker images work.
+We can use a hacky solution or use <link> in html file, which is what I did for now.
+@import "leaflet/dist/leaflet.css";
+*/
+
+@import "leaflet.markercluster/dist/MarkerCluster.css";
+@import "leaflet.markercluster/dist/MarkerCluster.Default.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
