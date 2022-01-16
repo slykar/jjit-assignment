@@ -1,9 +1,32 @@
 import { FunctionComponent } from 'react';
 import { useQuery } from 'react-query';
 import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
+import { OfferListItem } from '../components/offers/OfferListItem';
+import { Link } from 'react-router-dom';
 
 interface ApiOffer {
   [k: string]: any;
+  company_logo_url: string;
+  title: string;
+  salary_currency: string | null;
+  salary_from: number | null;
+  salary_to: number | null;
+  company_name: string;
+  city: string;
+}
+
+function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
+  const hasSalaryInfo = offer.salary_from && offer.salary_to;
+  const localize = (n: number) => n.toLocaleString();
+
+  return hasSalaryInfo ? (
+    <>
+      {localize(offer.salary_from!)} &ndash; {localize(offer.salary_to!)}
+      {offer.salary_currency && ' ' + offer.salary_currency}
+    </>
+  ) : (
+    <>Undisclosed Salary</>
+  );
 }
 
 const JobListPage: FunctionComponent = () => {
@@ -30,7 +53,17 @@ const JobListPage: FunctionComponent = () => {
       <div className="overflow-auto">
         <ul className="flex flex-col space-y-4 p-4">
           {offers.data?.map((offer) => (
-            <li className="bg-white p-4 rounded-lg shadow">{offer.id}</li>
+            <li className="bg-white rounded-lg shadow hover:shadow-lg cursor-pointer">
+              <Link className="block p-4" to={`offers/${offer.id}`}>
+                <OfferListItem
+                  imageUrl={offer.company_logo_url}
+                  title={offer.title}
+                  salary={salaryRangeForApiOffer(offer)}
+                  companyName={offer.company_name}
+                  city={offer.city}
+                />
+              </Link>
+            </li>
           ))}
         </ul>
       </div>
