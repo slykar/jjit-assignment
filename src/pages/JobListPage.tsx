@@ -1,19 +1,8 @@
 import { FunctionComponent } from 'react';
-import { useQuery } from 'react-query';
 import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
 import { OfferListItem } from '../components/offers/OfferListItem';
 import { Link } from 'react-router-dom';
-
-interface ApiOffer {
-  [k: string]: any;
-  company_logo_url: string;
-  title: string;
-  salary_currency: string | null;
-  salary_from: number | null;
-  salary_to: number | null;
-  company_name: string;
-  city: string;
-}
+import { ApiOffer, useOffers } from '../layouts/OffersLayout';
 
 function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
   const hasSalaryInfo = offer.salary_from && offer.salary_to;
@@ -30,9 +19,7 @@ function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
 }
 
 const JobListPage: FunctionComponent = () => {
-  const offers = useQuery<ApiOffer[], Error>('offers', () =>
-    fetch('https://test.justjoin.it/offers').then((res) => res.json())
-  );
+  const offers = useOffers();
 
   if (offers.isLoading) return <p>Loading...</p>;
   if (offers.error) return <p>An error has occurred: {offers.error.message}</p>;
@@ -53,7 +40,10 @@ const JobListPage: FunctionComponent = () => {
       <div className="overflow-auto">
         <ul className="flex flex-col space-y-4 p-4">
           {offers.data?.map((offer) => (
-            <li className="bg-white rounded-lg shadow hover:shadow-lg cursor-pointer">
+            <li
+              key={offer.id}
+              className="bg-white rounded-lg shadow hover:shadow-lg cursor-pointer"
+            >
               <Link className="block p-4" to={`offers/${offer.id}`}>
                 <OfferListItem
                   imageUrl={offer.company_logo_url}
