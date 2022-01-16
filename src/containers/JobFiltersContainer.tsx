@@ -1,10 +1,23 @@
+import { SearchInput } from '../components/common/SearchInput';
+
+const techStack = ['JS', 'PHP', 'Python', 'Ruby', 'Java', '.NET', 'Scala'];
+
 export default function () {
   return (
-    <header className="bg-white border-b">
-      <div className="w-full py-6 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-xl font-bold text-gray-900">
-          job filters controls
-        </h1>
+    <header className="flex flex-row space-x-4 items-center bg-white border-b py-6 px-4">
+      <div className="w-40 focus-within:w-full lg:focus-within:w-7/12 xl:focus-within:w-5/12">
+        <SearchInput />
+      </div>
+      <div className="w-40">
+        <select name="" id="" placeholder="Location">
+          <option value="remote-global">Remote Global</option>
+          <option value="remote-poland">Remote Poland</option>
+        </select>
+      </div>
+      <div>
+        <ul>
+          <li></li>
+        </ul>
       </div>
     </header>
   );
