@@ -40,6 +40,18 @@ Things that I would like to have but did not want to spend time on for a take-ho
 - More quality and style checks: import sorting, cyclomatic complexity, ordering of CSS class names, etc.
 - Setup CI for automated tests and additional code analysis, e.g. SonarQube
 
+### Architecture
+
+- State management using Mobx
+
 ### UI/UX
 
 - Create or use a complete UI kit more components, e.g. `Avatar`
+- Virtualized scroll list of job offers for better performance
+- More fluid breakpoints/proportions for offers-list/map-view (avoid layout jumps)
+- Error-specific messages and user-reportable error codes 
+
+### Other
+
+- SEO and user friendly URLs for filters
+- Actual 404 response on offer details page if is not found
