@@ -1,8 +1,8 @@
 import { FunctionComponent } from 'react';
 import { useMap } from 'react-leaflet';
 import { useParams } from 'react-router-dom';
-import { ApiOffer } from '../../layouts/OffersLayout';
 import findOfferById from '../../utils/findOfferById';
+import { ApiOffer } from '../../api';
 
 /**
  * A helper component that will pan the map to the location of the current offer.

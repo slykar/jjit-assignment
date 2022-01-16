@@ -1,31 +1,11 @@
 import { FunctionComponent, useMemo } from 'react';
 import { Outlet, useOutletContext, useParams } from 'react-router-dom';
-import { useQuery, UseQueryResult } from 'react-query';
+import { UseQueryResult } from 'react-query';
 import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { OffersMarkerCluster } from '../components/map/OffersMarkerCluster';
 import { MapOfferNavigator } from '../components/map/MapOfferNavigator';
 import findOfferById from '../utils/findOfferById';
-
-const API_KEY_OFFERS = 'offers';
-
-interface ApiOfferSkills {
-  name: string;
-  level: number;
-}
-
-export interface ApiOffer {
-  [k: string]: any;
-  company_logo_url: string;
-  title: string;
-  salary_currency: string | null;
-  salary_from: number | null;
-  salary_to: number | null;
-  company_name: string;
-  city: string;
-  skills: ApiOfferSkills[];
-  latitude: number;
-  longitude: number;
-}
+import { ApiOffer, useOfferQuery } from '../api';
 
 /**
  * Expose offers loaded as part of this layout page using React Router.
@@ -52,13 +32,8 @@ export function useOffer(): ApiOffer | undefined {
 }
 
 const OffersLayout: FunctionComponent = () => {
-  const offers = useQuery<ApiOffer[], Error>(API_KEY_OFFERS, async () => {
-    // TODO: add error handling - http status codes and json parsing errors
-    const response = await fetch('https://test.justjoin.it/offers');
-    return (await response.json()) as ApiOffer[];
-  });
-
-  const loadedOffers = offers.data ?? [];
+  const offers = useOfferQuery();
+  const markerOffers = offers.data ?? [];
 
   return (
     <div className="flex flex-row grow min-h-0">
@@ -78,7 +53,7 @@ const OffersLayout: FunctionComponent = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           />
           <OffersMarkerCluster>
-            {loadedOffers.map((offer) => (
+            {markerOffers.map((offer) => (
               <Marker
                 key={offer.id}
                 position={{ lat: offer.latitude, lng: offer.longitude }}

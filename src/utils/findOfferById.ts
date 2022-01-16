@@ -1,4 +1,4 @@
-import { ApiOffer } from '../layouts/OffersLayout';
+import { ApiOffer } from '../api';
 
 export default function findOfferById(
   offers: ApiOffer[],

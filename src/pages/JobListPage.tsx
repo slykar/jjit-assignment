@@ -2,7 +2,8 @@ import { FunctionComponent } from 'react';
 import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
 import { OfferListItem } from '../components/offers/OfferListItem';
 import { Link } from 'react-router-dom';
-import { ApiOffer, useOffersQueryResult } from '../layouts/OffersLayout';
+import { useOffersQueryResult } from '../layouts/OffersLayout';
+import { ApiOffer } from '../api';
 
 function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
   const hasSalaryInfo = offer.salary_from && offer.salary_to;
