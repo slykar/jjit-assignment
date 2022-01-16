@@ -2,25 +2,13 @@ import { FunctionComponent } from 'react';
 import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
 import { OfferListItem } from '../components/offers/OfferListItem';
 import { Link } from 'react-router-dom';
-import { ApiOffer, useOffers } from '../layouts/OffersLayout';
-
-function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
-  const hasSalaryInfo = offer.salary_from && offer.salary_to;
-  const localize = (n: number) => n.toLocaleString();
-
-  return hasSalaryInfo ? (
-    <>
-      {localize(offer.salary_from!)} &ndash; {localize(offer.salary_to!)}
-      {offer.salary_currency && ' ' + offer.salary_currency}
-    </>
-  ) : (
-    <>Undisclosed Salary</>
-  );
-}
+import { useOffersQueryResult } from '../layouts/OffersLayout';
+import { salaryRangeForApiOffer } from '../utils/offers';
 
 const JobListPage: FunctionComponent = () => {
-  const offers = useOffers();
+  const offers = useOffersQueryResult();
 
+  // TODO: Ugly status indicators... Also, no proper error reporting to the user.
   if (offers.isLoading) return <p>Loading...</p>;
   if (offers.error) return <p>An error has occurred: {offers.error.message}</p>;
 
