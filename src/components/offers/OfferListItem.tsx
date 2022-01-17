@@ -44,7 +44,7 @@ export const OfferListItem: FunctionComponent<OfferListItemProps> = (props) => {
 
           <Pill.Group>
             {props.skills.map((s) => (
-              <Pill>{s}</Pill>
+              <Pill key={s}>{s}</Pill>
             ))}
           </Pill.Group>
         </div>
