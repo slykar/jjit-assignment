@@ -31,7 +31,8 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ## Ideas for Improvement
 
-Things that I would like to have but did not want to spend time on for a take-home assignment.
+Things that I would like to have but did not want to spend time on for a take-home assignment.  
+There would be more if I thought harder about it :)
 
 ### Tooling
 
@@ -54,6 +55,7 @@ Things that I would like to have but did not want to spend time on for a take-ho
 - Highlight marker of the currently displayed offer
 - List offers when clicking on a clustered marker
 - At least a bit of focus on a11y and keyboard navigation possibilities
+- Filters for location with panning to that location
 
 ### Other
 

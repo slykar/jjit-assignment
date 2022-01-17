@@ -2,7 +2,12 @@ import React, { FunctionComponent, useContext } from 'react';
 
 export interface GlobalOfferFilters {
   searchQuery?: string;
-  withSalary: boolean;
+  /**
+   * null - all offers
+   * true - with salary
+   * false - undisclosed salary (just for fun)
+   */
+  withSalary: boolean | null;
   techStack: string;
   salaryRange: [number, number];
 }

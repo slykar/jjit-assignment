@@ -1,5 +1,5 @@
 import { SearchInput } from '../components/common/SearchInput';
-import React from 'react';
+import React, { FunctionComponent } from 'react';
 import { useAppState } from '../contexts/global-app-context';
 
 const techStack = [
@@ -27,8 +27,8 @@ const techStack = [
   'game',
 ];
 
-export default function () {
-  const [state, dispatch] = useAppState();
+export const JobFiltersContainer: FunctionComponent = () => {
+  const [, dispatch] = useAppState();
 
   function onTechStackChange(event: React.ChangeEvent<HTMLSelectElement>) {
     dispatch({
@@ -45,15 +45,9 @@ export default function () {
         <SearchInput />
       </div>
       <div className="w-40">
-        <select name="" id="" placeholder="Location">
-          <option value="remote-global">Remote Global</option>
-          <option value="remote-poland">Remote Poland</option>
-        </select>
-      </div>
-      <div className="w-40">
         <select
-          name=""
-          id=""
+          name="filter-tech-stack"
+          id="filter-tech-stack"
           placeholder="Tech stack"
           onChange={onTechStackChange}
         >
@@ -66,4 +60,4 @@ export default function () {
       </div>
     </header>
   );
-}
+};

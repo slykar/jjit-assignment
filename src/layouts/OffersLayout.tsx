@@ -5,8 +5,9 @@ import { MapContainer, Marker, TileLayer } from 'react-leaflet';
 import { OffersMarkerCluster } from '../components/map/OffersMarkerCluster';
 import { MapOfferNavigator } from '../components/map/MapOfferNavigator';
 import { ApiOffer, useOfferQuery } from '../api';
-import { findOfferById } from '../utils/offers';
-import JobFiltersContainer from '../containers/JobFiltersContainer';
+import { filterOffers, findOfferById } from '../utils/offers';
+import { JobFiltersContainer } from '../containers/JobFiltersContainer';
+import { useAppState } from '../contexts/global-app-context';
 
 /**
  * Expose offers loaded as part of this layout page using React Router.
@@ -33,8 +34,11 @@ export function useOffer(): ApiOffer | undefined {
 }
 
 const OffersLayout: FunctionComponent = () => {
+  const [state] = useAppState();
+  const filters = state.filters;
   const offers = useOfferQuery();
   const offersData = offers.data ?? [];
+  const filteredOffers = filterOffers(offersData, filters);
 
   return (
     <>
@@ -56,7 +60,7 @@ const OffersLayout: FunctionComponent = () => {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
             <OffersMarkerCluster>
-              {offersData.map((offer) => (
+              {filteredOffers.map((offer) => (
                 <Marker
                   key={offer.id}
                   position={{ lat: offer.latitude, lng: offer.longitude }}

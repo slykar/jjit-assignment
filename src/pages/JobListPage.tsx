@@ -3,10 +3,15 @@ import { OfferListTabFilters } from '../components/offers/OfferListTabFilters';
 import { OfferListItem } from '../components/offers/OfferListItem';
 import { Link } from 'react-router-dom';
 import { useOffersQueryResult } from '../layouts/OffersLayout';
-import { salaryRangeForApiOffer } from '../utils/offers';
+import { filterOffers, salaryRangeForApiOffer } from '../utils/offers';
+import { useAppState } from '../contexts/global-app-context';
 
 const JobListPage: FunctionComponent = () => {
+  const [state] = useAppState();
+  const filters = state.filters;
   const offers = useOffersQueryResult();
+  const offersData = offers.data ?? [];
+  const filteredOffers = filterOffers(offersData, filters);
 
   // TODO: Ugly status indicators... Also, no proper error reporting to the user.
   if (offers.isLoading) return <p>Loading...</p>;
@@ -27,7 +32,7 @@ const JobListPage: FunctionComponent = () => {
       </div>
       <div className="overflow-auto">
         <ul className="flex flex-col space-y-4 p-4">
-          {offers.data?.map((offer) => (
+          {filteredOffers.map((offer) => (
             <li
               key={offer.id}
               className="bg-white rounded-lg shadow hover:shadow-lg cursor-pointer"
