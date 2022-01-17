@@ -14,6 +14,15 @@ export default function () {
           <option value="remote-poland">Remote Poland</option>
         </select>
       </div>
+      <div className="w-40">
+        <select name="" id="" placeholder="Tech stack">
+          <option value="all">All</option>
+          <option value="java">Java</option>
+          <option value="php">PHP</option>
+          <option value="js">JS</option>
+          <option value="python">Python</option>
+        </select>
+      </div>
       <div>
         <ul>
           <li></li>

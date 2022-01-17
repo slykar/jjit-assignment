@@ -16,6 +16,7 @@ export interface ApiOffer {
   salary_to: number | null;
   company_name: string;
   city: string;
+  marker_icon: string;
   skills: ApiOfferSkills[];
   latitude: number;
   longitude: number;

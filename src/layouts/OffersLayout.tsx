@@ -6,6 +6,7 @@ import { OffersMarkerCluster } from '../components/map/OffersMarkerCluster';
 import { MapOfferNavigator } from '../components/map/MapOfferNavigator';
 import { ApiOffer, useOfferQuery } from '../api';
 import { findOfferById } from '../utils/offers';
+import JobFiltersContainer from '../containers/JobFiltersContainer';
 
 /**
  * Expose offers loaded as part of this layout page using React Router.
@@ -33,36 +34,39 @@ export function useOffer(): ApiOffer | undefined {
 
 const OffersLayout: FunctionComponent = () => {
   const offers = useOfferQuery();
-  const markerOffers = offers.data ?? [];
+  const offersData = offers.data ?? [];
 
   return (
-    <div className="flex flex-row grow min-h-0">
-      <div className="flex flex-col basis-full lg:basis-7/12 xl:basis-1/2 2xl:basis-5/12">
-        <Outlet context={offers} />
+    <>
+      <JobFiltersContainer />
+      <div className="flex flex-row grow min-h-0">
+        <div className="flex flex-col basis-full lg:basis-7/12 xl:basis-1/2 2xl:basis-5/12">
+          <Outlet context={offers} />
+        </div>
+        <aside className="hidden lg:flex lg:basis-5/12 xl:basis-1/2 2xl:basis-7/12">
+          <MapContainer
+            className="w-full h-full"
+            center={[53.428543, 14.552812]}
+            zoom={13}
+            scrollWheelZoom={true}
+          >
+            <MapOfferNavigator offers={offers?.data ?? []} />
+            <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+            />
+            <OffersMarkerCluster>
+              {offersData.map((offer) => (
+                <Marker
+                  key={offer.id}
+                  position={{ lat: offer.latitude, lng: offer.longitude }}
+                />
+              ))}
+            </OffersMarkerCluster>
+          </MapContainer>
+        </aside>
       </div>
-      <aside className="hidden lg:flex lg:basis-5/12 xl:basis-1/2 2xl:basis-7/12">
-        <MapContainer
-          className="w-full h-full"
-          center={[53.428543, 14.552812]}
-          zoom={13}
-          scrollWheelZoom={true}
-        >
-          <MapOfferNavigator offers={offers?.data ?? []} />
-          <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          <OffersMarkerCluster>
-            {markerOffers.map((offer) => (
-              <Marker
-                key={offer.id}
-                position={{ lat: offer.latitude, lng: offer.longitude }}
-              />
-            ))}
-          </OffersMarkerCluster>
-        </MapContainer>
-      </aside>
-    </div>
+    </>
   );
 };
 
