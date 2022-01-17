@@ -39,6 +39,7 @@ const JobListPage: FunctionComponent = () => {
                   salary={salaryRangeForApiOffer(offer)}
                   companyName={offer.company_name}
                   city={offer.city}
+                  skills={offer.skills.map((s) => s.name)}
                 />
               </Link>
             </li>
