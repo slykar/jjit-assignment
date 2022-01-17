@@ -1,8 +1,44 @@
 import { SearchInput } from '../components/common/SearchInput';
+import React from 'react';
+import { useAppState } from '../contexts/global-app-context';
 
-const techStack = ['JS', 'PHP', 'Python', 'Ruby', 'Java', '.NET', 'Scala'];
+const techStack = [
+  'all',
+  'java',
+  'net',
+  'testing',
+  'c',
+  'javascript',
+  'ux',
+  'php',
+  'data',
+  'other',
+  'ruby',
+  'devops',
+  'blockchain',
+  'python',
+  'html',
+  'mobile',
+  'scala',
+  'pm',
+  'sap',
+  'go',
+  'security',
+  'game',
+];
 
 export default function () {
+  const [state, dispatch] = useAppState();
+
+  function onTechStackChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch({
+      type: 'MERGE_FILTER',
+      payload: {
+        techStack: event.target.value,
+      },
+    });
+  }
+
   return (
     <header className="flex flex-row space-x-4 items-center bg-white border-b py-6 px-4">
       <div className="w-40 focus-within:w-full lg:focus-within:w-7/12 xl:focus-within:w-5/12">
@@ -15,18 +51,18 @@ export default function () {
         </select>
       </div>
       <div className="w-40">
-        <select name="" id="" placeholder="Tech stack">
-          <option value="all">All</option>
-          <option value="java">Java</option>
-          <option value="php">PHP</option>
-          <option value="js">JS</option>
-          <option value="python">Python</option>
+        <select
+          name=""
+          id=""
+          placeholder="Tech stack"
+          onChange={onTechStackChange}
+        >
+          {techStack.map((stack) => (
+            <option key={stack} value={stack}>
+              {stack}
+            </option>
+          ))}
         </select>
-      </div>
-      <div>
-        <ul>
-          <li></li>
-        </ul>
       </div>
     </header>
   );
