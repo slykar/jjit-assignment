@@ -5,6 +5,12 @@
 **It's not an MVP**. I did not focus on features that would provide the essential user experience.\
 My goal was to present that I can do common things in React and I wanted to spend some time with Tailwind.
 
+## Getting Started
+
+Make sure you have node `v16.13.2` installed. You can use NVM.  
+
+Remember to `npm install`.
+
 ## Available Scripts
 
 In the project directory, you can run:
