@@ -44,7 +44,8 @@ export const JobFiltersContainer: FunctionComponent = () => {
       <div className="w-40 focus-within:w-full lg:focus-within:w-7/12 xl:focus-within:w-5/12">
         <SearchInput />
       </div>
-      <div className="w-40">
+      <div className="flex flex-row">
+        Tech stack:
         <select
           name="filter-tech-stack"
           id="filter-tech-stack"

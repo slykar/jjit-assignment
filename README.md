@@ -43,11 +43,13 @@ There would be more if I thought harder about it :)
 
 ### Architecture
 
+- Automated tests - especially filters and sorters
 - State management using Mobx
 - Lazy loading of images - webp `loading="lazy"`
 
 ### UI/UX
 
+- Fix/improve mobile view
 - Create or use a complete UI kit - more dumb components to encapsulate tailwind styling
 - Virtualized scroll list of job offers for better performance
 - More fluid breakpoints/proportions for offers-list/map-view (avoid layout jumps)
@@ -56,6 +58,7 @@ There would be more if I thought harder about it :)
 - List offers when clicking on a clustered marker
 - At least a bit of focus on a11y and keyboard navigation possibilities
 - Filters for location with panning to that location
+- Keep filter / sort state when navigating between list and details page
 
 ### Other
 

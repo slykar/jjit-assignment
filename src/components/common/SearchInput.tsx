@@ -9,6 +9,7 @@ export function SearchInput() {
         type="search"
         name=""
         id=""
+        placeholder="It's not gonna work, sorry :)"
       />
     </label>
   );

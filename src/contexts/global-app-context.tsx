@@ -52,7 +52,7 @@ function reducer(state: GlobalAppState, action: AppAction): GlobalAppState {
 export const initialAppState: GlobalAppState = {
   filters: {
     techStack: 'all',
-    withSalary: false,
+    withSalary: null,
     salaryRange: [0, Infinity],
   },
 };
