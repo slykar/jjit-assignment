@@ -1,4 +1,5 @@
 import { ApiOffer } from '../api';
+import { GlobalOfferFilters } from '../contexts/global-app-context';
 
 /**
  * Helper function to find offer by ID in a list of offers.
@@ -35,4 +36,28 @@ export function salaryRangeForApiOffer(offer: ApiOffer): JSX.Element {
   ) : (
     <>Undisclosed Salary</>
   );
+}
+
+/**
+ * Filters list of all offers according to filters object.
+ * We use only apply `AND` conjunction between filters.
+ *
+ * @param offers
+ * @param filters
+ */
+export function filterOffers(offers: ApiOffer[], filters: GlobalOfferFilters) {
+  return offers.filter((o) => {
+    // List all checks we need to perform when filtering the offer list.
+    //
+    const checks = [
+      () => filters.techStack === 'all' || o.marker_icon === filters.techStack,
+      () =>
+        // null - all offers, true - with salary, false - undisclosed
+        filters.withSalary === null ||
+        filters.withSalary === Boolean(o.salary_from),
+    ];
+
+    // Make
+    return checks.every((c) => c());
+  });
 }

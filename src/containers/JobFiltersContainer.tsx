@@ -1,24 +1,64 @@
 import { SearchInput } from '../components/common/SearchInput';
+import React, { FunctionComponent } from 'react';
+import { useAppState } from '../contexts/global-app-context';
 
-const techStack = ['JS', 'PHP', 'Python', 'Ruby', 'Java', '.NET', 'Scala'];
+const techStack = [
+  'all',
+  'java',
+  'net',
+  'testing',
+  'c',
+  'javascript',
+  'ux',
+  'php',
+  'data',
+  'other',
+  'ruby',
+  'devops',
+  'blockchain',
+  'python',
+  'html',
+  'mobile',
+  'scala',
+  'pm',
+  'sap',
+  'go',
+  'security',
+  'game',
+];
 
-export default function () {
+export const JobFiltersContainer: FunctionComponent = () => {
+  const [, dispatch] = useAppState();
+
+  function onTechStackChange(event: React.ChangeEvent<HTMLSelectElement>) {
+    dispatch({
+      type: 'MERGE_FILTER',
+      payload: {
+        techStack: event.target.value,
+      },
+    });
+  }
+
   return (
     <header className="flex flex-row space-x-4 items-center bg-white border-b py-6 px-4">
       <div className="w-40 focus-within:w-full lg:focus-within:w-7/12 xl:focus-within:w-5/12">
         <SearchInput />
       </div>
-      <div className="w-40">
-        <select name="" id="" placeholder="Location">
-          <option value="remote-global">Remote Global</option>
-          <option value="remote-poland">Remote Poland</option>
+      <div className="flex flex-row">
+        Tech stack:
+        <select
+          name="filter-tech-stack"
+          id="filter-tech-stack"
+          placeholder="Tech stack"
+          onChange={onTechStackChange}
+        >
+          {techStack.map((stack) => (
+            <option key={stack} value={stack}>
+              {stack}
+            </option>
+          ))}
         </select>
-      </div>
-      <div>
-        <ul>
-          <li></li>
-        </ul>
       </div>
     </header>
   );
-}
+};

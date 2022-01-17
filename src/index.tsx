@@ -5,6 +5,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
+import { AppStateProvider } from './contexts/global-app-context';
 
 // FIXME: ideally this could be in it's own file
 const queryClient = new QueryClient();
@@ -13,7 +14,9 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <App />
+        <AppStateProvider>
+          <App />
+        </AppStateProvider>
       </QueryClientProvider>
     </BrowserRouter>
   </React.StrictMode>,

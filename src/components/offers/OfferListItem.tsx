@@ -8,6 +8,7 @@ interface OfferListItemProps {
   salary: string | JSX.Element;
   companyName: string;
   city: string;
+  skills: string[];
 }
 
 export const OfferListItem: FunctionComponent<OfferListItemProps> = (props) => {
@@ -42,9 +43,9 @@ export const OfferListItem: FunctionComponent<OfferListItemProps> = (props) => {
           </div>
 
           <Pill.Group>
-            <Pill>react</Pill>
-            <Pill>spark</Pill>
-            <Pill>python</Pill>
+            {props.skills.map((s) => (
+              <Pill key={s}>{s}</Pill>
+            ))}
           </Pill.Group>
         </div>
       </div>
